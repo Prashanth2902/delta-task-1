@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food Requirment</title>
+</head>
+<body>
+  <h1>FOOD REQUIRMENT CALCULATOR</h1>
+  <div id="basic-info">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" maxlength="50"><br>
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="age" max="100"><br>
+    <label for="height">Height(in meters):</label><br>
+    <input type= "number" id="height" name="height" ><br>
+    <label for="weight">Weight(in kg):</label><br>
+    <input type= "number" id="weight" name="weight" ><br><br/>
+    <button id="submit">Submit</button><br><br/>
+    <p id='BMI'></p>
+    <h1>WELCOME</h1>
+    <div class="Results">
+
+            <span class="a"><b>Calories: </b><strong id="calo">_/_</strong><br>
+                <p id="WarningCal"></p>
+            </span>
+            <span class="a"><b>Protein: </b><strong id="prot">_/_</strong><br>
+                <p id="WarningPro"></p>
+            </span>
+            <span class="a"><b>Fat: </b><strong id="faT">_/_</strong><br>
+                <p id="WarningFat"></p>
+            </span>
+      </div>
+    <script>
+    document.getElementById('submit').onclick = function() {
+      const name = document.getElementById('name').value
+      const age = document.getElementById('age').value
+      const height = document.getElementById('height').value
+      const weight = document.getElementById('weight').value
+      console.log(height);
+      console.log(weight);
+      console.log(age);
+      console.log(name);
+    document.getElementById("BMI").innerHTML = `Your BMI is ${weight/(height*height)}`;
+
+    const foodName = document.getElementById('foodName').value
+    const cal = document.getElementById('cal').value
+    const protein = document.getElementById('protein').value
+    const fat = document.getElementById('fat').value
+
+    let calo = Math.round((864 - 9.72 * age + 1.14 * (14.2 * weight + 503 * height)));
+    let prot = Math.round(calo / 16);
+    let faT = Math.round(calo / 30);
+    document.getElementById("calo").innerHTML = "/" + calo;
+    document.getElementById("prot").innerHTML = "/" + prot;
+    document.getElementById("faT").innerHTML = "/" + faT;
+  }
+    </script>
+
+<div id="input-values">
+<label for="foodName">Name of the food:</label><br>
+<input type="text" id="foodName" name="foodName" maxlength="50"><br>
+<label for="cal">Calories:</label><br>
+<input type="number" id="cal" name="cal" ><br>
+<label for="protein">Protein(in grams):</label><br>
+<input type= "number" id="protein" name="protein" ><br>
+<label for="fat">Fat(in grams):</label><br>
+<input type= "number" id="fat" name="fat" ><br><br/>
+<button id="submit2">Enter</button><br><br/>
+<button id="remove">Remove Entry</button><br><br/>
+</div>
+<br>
+<br>
+
+<table id="table">
+    <tr>
+     <th>Food Name</th>
+     <th>Calories</th>
+     <th>Protein</th>
+     <th>Fat</th>
+    </tr>
+    <tr>
+    </tr>
+</table>
+<script>
+let ConCal = 0;
+let ConPro = 0;
+let ConFat = 0;
+document.getElementById("submit2").onclick = function() {
+var foodName = document.getElementById('foodName').value
+var cal = document.getElementById('cal').value
+var protein = document.getElementById('protein').value
+var fat = document.getElementById('fat').value
+let name = document.getElementById('name').value
+let age = document.getElementById('age').value
+let height = document.getElementById('height').value
+let weight = document.getElementById('weight').value
+
+let calo = Math.round((864 - 9.72 * age + 1.14 * (14.2 * weight + 503 * height)));
+let prot = Math.round(calo / 16);
+let faT = Math.round(calo / 30);
+
+
+ConCal += (+cal);
+ConPro += (+protein);
+ConFat += (+fat);
+
+   var table = document.getElementById("table");
+   var row = table.insertRow(1);
+   var cell1 = row.insertCell(0);
+   var cell2 = row.insertCell(1);
+   var cell3 = row.insertCell(2);
+   var cell4 = row.insertCell(3);
+   cell1.innerHTML = foodName;
+   cell2.innerHTML = cal;
+   cell3.innerHTML = protein;
+   cell4.innerHTML = fat;
+
+   document.getElementById("calo").innerHTML = ConCal + "/" + calo;
+   document.getElementById("prot").innerHTML = ConPro + "/" + prot;
+   document.getElementById("faT").innerHTML = ConFat + "/" + faT;
+
+}
+document.getElementById("remove").onclick = function() {
+  var foodName = document.getElementById('foodName').value
+  var cal = document.getElementById('cal').value
+  var protein = document.getElementById('protein').value
+  var fat = document.getElementById('fat').value
+  let name = document.getElementById('name').value
+  let age = document.getElementById('age').value
+  let height = document.getElementById('height').value
+  let weight = document.getElementById('weight').value
+
+  let calo = Math.round((864 - 9.72 * age + 1.14 * (14.2 * weight + 503 * height)));
+  let prot = Math.round(calo / 16);
+  let faT = Math.round(calo / 30);
+  var table = document.getElementById('table');
+  var Cells = table.rows.item(1).cells;
+
+    var cal = Cells.item(1).innerHTML;
+    var protein = Cells.item(2).innerHTML;
+    var fat = Cells.item(3).innerHTML;
+    ConCal -= cal;
+    ConPro -= protein;
+    ConFat -= fat;
+    document.getElementById("table").deleteRow(1);
+    document.getElementById("calo").innerHTML = ConCal + "/" + calo;
+    document.getElementById("prot").innerHTML = ConPro + "/" + prot;
+    document.getElementById("faT").innerHTML = ConFat + "/" + faT;
+
+}
+</script>
+</body>
+
+</html>
